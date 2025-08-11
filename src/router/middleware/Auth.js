@@ -1,15 +1,15 @@
-import { useStore } from '@/store'
+import { useStore } from "@/store";
 
 export default function Auth(to, from, next) {
-  const store = useStore()
-  const isAuthenticated = !!store.auth
+  const store = useStore();
+  const isAuthenticated = !!store.auth;
 
   if (isAuthenticated) {
-    return next()
+    return next();
   } else {
     return next({
-      name: 'login',
+      name: "login",
       query: { redirect: to.fullPath },
-    })
+    });
   }
 }

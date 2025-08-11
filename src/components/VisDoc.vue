@@ -42,7 +42,12 @@
               <CardTitle :text="label" sub />
             </v-col>
             <v-col cols="1" class="text-right">
-              <v-btn icon variant="text" size="x-small" @click.prevent="imgDlg = false">
+              <v-btn
+                icon
+                variant="text"
+                size="x-small"
+                @click.prevent="imgDlg = false"
+              >
                 <v-icon>mdi-close</v-icon>
                 <v-tooltip activator="parent" location="left">Cerrar</v-tooltip>
               </v-btn>
@@ -60,38 +65,38 @@
 
 <script setup>
 // Importaciones
-import { ref, onMounted } from 'vue'
-import { getBlob } from '@/utils/coders'
-import { getDateTime } from '@/utils/formatters'
-import CardTitle from '@/components/CardTitle.vue'
+import { ref, onMounted } from "vue";
+import { getBlob } from "@/utils/coders";
+import { getDateTime } from "@/utils/formatters";
+import CardTitle from "@/components/CardTitle.vue";
 
 // Props
 const props = defineProps({
   label: String,
   value: Object,
   img: Boolean,
-})
+});
 
 // Estado
-const docUrl = ref(null)
-const imgDlg = ref(false)
-const isImageVisible = ref(false)
+const docUrl = ref(null);
+const imgDlg = ref(false);
+const isImageVisible = ref(false);
 
 // Métodos
 const docDwd = () => {
-  const link = document.createElement('a')
-  link.href = docUrl.value
-  link.setAttribute('target', '_blank')
-  link.download = `doc_${getDateTime('', '', '')}.${props.value?.ext || 'bin'}`
-  link.click()
-}
+  const link = document.createElement("a");
+  link.href = docUrl.value;
+  link.setAttribute("target", "_blank");
+  link.download = `doc_${getDateTime("", "", "")}.${props.value?.ext || "bin"}`;
+  link.click();
+};
 
 // Inicialización
 onMounted(() => {
-  const { value } = props
+  const { value } = props;
   if (value?.cnt && value?.ext) {
-    docUrl.value = URL.createObjectURL(getBlob(value.cnt, value.ext))
+    docUrl.value = URL.createObjectURL(getBlob(value.cnt, value.ext));
   }
-  isImageVisible.value = props.img
-})
+  isImageVisible.value = props.img;
+});
 </script>

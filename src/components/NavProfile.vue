@@ -88,6 +88,7 @@ const dialogModel = computed({
 const handleAction = async () => {
   isLoading.value = true
   try {
+    //PENDIENTE CERRAR SESIÓN EN BACK
     store.logoutAction()
     router.push({ name: 'login' })
   } finally {

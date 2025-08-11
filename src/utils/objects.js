@@ -15,4 +15,4 @@ export const getUserObj = () => ({
   role_id: null,
   phone: null,
   movil_phone: null,
-})
+});

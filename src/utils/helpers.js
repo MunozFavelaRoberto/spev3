@@ -3,8 +3,8 @@
  * @returns {number} Año en formato YYYY.
  */
 export const getCurrentYear = () => {
-  return new Date().getFullYear()
-}
+  return new Date().getFullYear();
+};
 
 /**
  * Retorna un objeto clonado y, si es modo edición, agrega _method: PATCH.
@@ -13,10 +13,10 @@ export const getCurrentYear = () => {
  * @returns {Object} Objeto modificado.
  */
 export const getObj = (data, isStoreMode = false) => {
-  const obj = { ...data }
-  if (!isStoreMode) obj._method = 'PATCH'
-  return obj
-}
+  const obj = { ...data };
+  if (!isStoreMode) obj._method = "PATCH";
+  return obj;
+};
 
 /**
  * Convierte un objeto plano en FormData, serializando objetos y limpiando nulos.
@@ -24,18 +24,22 @@ export const getObj = (data, isStoreMode = false) => {
  * @returns {FormData} FormData generado.
  */
 export const getFormData = (data) => {
-  const formData = new FormData()
+  const formData = new FormData();
 
   for (const key in data) {
-    const value = data[key]
-    const isEmpty = typeof value === 'string' && value.trim() === ''
-    const isObject = typeof value === 'object' && !(value instanceof File) && value !== null
+    const value = data[key];
+    const isEmpty = typeof value === "string" && value.trim() === "";
+    const isObject =
+      typeof value === "object" && !(value instanceof File) && value !== null;
 
-    formData.append(key, value == null || isEmpty ? '' : isObject ? JSON.stringify(value) : value)
+    formData.append(
+      key,
+      value == null || isEmpty ? "" : isObject ? JSON.stringify(value) : value
+    );
   }
 
-  return formData
-}
+  return formData;
+};
 
 /**
  * Extrae una subpropiedad anidada y la asigna como propiedad directa.
@@ -45,12 +49,12 @@ export const getFormData = (data) => {
  * @returns {Object} Objeto actualizado.
  */
 export const extractNestedProp = (target, sourceKey, nestedKey) => {
-  const nested = target?.[sourceKey]
-  if (nested && typeof nested === 'object') {
-    target[`${sourceKey}_${nestedKey}`] = nested[nestedKey]
+  const nested = target?.[sourceKey];
+  if (nested && typeof nested === "object") {
+    target[`${sourceKey}_${nestedKey}`] = nested[nestedKey];
   }
-  return target
-}
+  return target;
+};
 
 /**
  * Extrae una clave de cada objeto en un arreglo anidado y las asigna planas.
@@ -60,13 +64,13 @@ export const extractNestedProp = (target, sourceKey, nestedKey) => {
  * @returns {Object} Objeto actualizado.
  */
 export const extractMultipleNestedProps = (target, arrayKey, nestedKey) => {
-  const array = target?.[arrayKey]
+  const array = target?.[arrayKey];
   if (Array.isArray(array)) {
     array.forEach((item, index) => {
       if (item?.[nestedKey] !== undefined) {
-        target[`${arrayKey}_${nestedKey}_${index}`] = item[nestedKey]
+        target[`${arrayKey}_${nestedKey}_${index}`] = item[nestedKey];
       }
-    })
+    });
   }
-  return target
-}
+  return target;
+};

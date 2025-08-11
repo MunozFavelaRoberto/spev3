@@ -20,19 +20,19 @@
 
 <script setup>
 // Importaciones
-import { computed } from 'vue'
-import { menuItems } from '@/utils/menu'
+import { computed } from "vue";
+import { menuItems } from "@/utils/menu";
 
 // Props y eventos
 const props = defineProps({
   modelValue: Boolean,
   isMobile: Boolean,
-})
-const emit = defineEmits(['update:modelValue'])
+});
+const emit = defineEmits(["update:modelValue"]);
 
 // Estado computado
 const drawerModel = computed({
   get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val),
-})
+  set: (val) => emit("update:modelValue", val),
+});
 </script>

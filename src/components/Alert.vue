@@ -8,18 +8,18 @@
 
 <script setup>
 // Estado reactivo
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const visible = ref(false)
-const color = ref(null)
-const msg = ref(null)
+const visible = ref(false);
+const color = ref(null);
+const msg = ref(null);
 
 // Método expuesto
 const show = (newColor, newMsg) => {
-  color.value = newColor
-  msg.value = newMsg
-  visible.value = true
-}
+  color.value = newColor;
+  msg.value = newMsg;
+  visible.value = true;
+};
 
-defineExpose({ show })
+defineExpose({ show });
 </script>

@@ -14,33 +14,33 @@
 
 <script setup>
 // Importaciones de Vue
-import { ref, computed, getCurrentInstance, provide } from 'vue'
+import { ref, computed, getCurrentInstance, provide } from "vue";
 
 // Store principal
-import { useStore } from '@/store'
+import { useStore } from "@/store";
 
 // Componentes globales
-import Alert from '@/components/Alert.vue'
-import Confirm from '@/components/Confirm.vue'
-import NavBar from '@/components/NavBar.vue'
+import Alert from "@/components/Alert.vue";
+import Confirm from "@/components/Confirm.vue";
+import NavBar from "@/components/NavBar.vue";
 
 // Instancias y estado
-const store = useStore()
-const alert = ref(null)
-const confirm = ref(null)
-const auth = computed(() => store.getAuth)
-const app = getCurrentInstance()?.appContext.app
+const store = useStore();
+const alert = ref(null);
+const confirm = ref(null);
+const auth = computed(() => store.getAuth);
+const app = getCurrentInstance()?.appContext.app;
 
 // Inyección de métodos globales
-provide('alert', {
+provide("alert", {
   show: (color, msg) => alert.value?.show(color, msg),
-})
+});
 
-provide('confirm', {
+provide("confirm", {
   show: (options) => confirm.value?.show(options),
-})
+});
 </script>
 
 <style>
-@import '@/style.css';
+@import "@/style.css";
 </style>

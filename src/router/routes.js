@@ -1,84 +1,84 @@
 // Importación de middlewares
-import Auth from './middleware/Auth'
-import Public from './middleware/Public'
+import Auth from "./middleware/Auth";
+import Public from "./middleware/Public";
 
 const routes = [
   // General
   {
-    path: '/inicio',
-    name: 'home',
-    component: () => import('@/views/general/Home.vue'),
+    path: "/inicio",
+    name: "home",
+    component: () => import("@/views/general/Home.vue"),
     meta: {
-      title: 'Inicio',
+      title: "Inicio",
       middleware: Auth,
     },
   },
   {
-    path: '/no_autorizado',
-    name: 'unauthorized',
-    component: () => import('@/views/general/Unauthorized.vue'),
+    path: "/no_autorizado",
+    name: "unauthorized",
+    component: () => import("@/views/general/Unauthorized.vue"),
     meta: {
-      title: 'Acceso Denegado',
+      title: "Acceso Denegado",
       middleware: Auth,
     },
   },
 
   // Public
   {
-    path: '/iniciar_sesion',
-    name: 'login',
-    component: () => import('@/views/public/UserLogin.vue'),
+    path: "/iniciar_sesion",
+    name: "login",
+    component: () => import("@/views/public/UserLogin.vue"),
     meta: {
-      title: 'Iniciar Sesión',
+      title: "Iniciar Sesión",
       middleware: Public,
     },
   },
   {
-    path: '/',
-    name: 'main',
-    component: () => import('@/views/public/Main.vue'),
+    path: "/",
+    name: "main",
+    component: () => import("@/views/public/Main.vue"),
     meta: {
-      title: 'SVR',
+      title: "SVR",
       middleware: Public,
     },
   },
   {
-    path: '/recuperar_contrasena',
-    name: 'user_password_recover',
-    component: () => import('@/views/public/UserPasswordRecover.vue'),
+    path: "/recuperar_contrasena",
+    name: "user_password_recover",
+    component: () => import("@/views/public/UserPasswordRecover.vue"),
     meta: {
-      title: 'Recuperar contraseña',
-      icon: 'mdi-account',
+      title: "Recuperar contraseña",
+      icon: "mdi-account",
       middleware: Public,
     },
   },
   {
-    path: '/restablecer_contrasena/:id',
-    name: 'user_password_reset',
-    component: () => import('@/views/public/UserPasswordReset.vue'),
+    path: "/restablecer_contrasena/:id",
+    name: "user_password_reset",
+    component: () => import("@/views/public/UserPasswordReset.vue"),
     meta: {
-      title: 'Restablecer contraseña',
-      icon: 'mdi-account',
+      title: "Restablecer contraseña",
+      icon: "mdi-account",
       middleware: Public,
     },
   },
   {
-    path: '/confirmar_cuenta/:id',
-    name: 'user_account_confirm',
-    component: () => import('@/views/public/UserAccountConfirm.vue'),
+    path: "/confirmar_cuenta/:id",
+    name: "user_account_confirm",
+    component: () => import("@/views/public/UserAccountConfirm.vue"),
     meta: {
-      title: 'Confirmar cuenta',
-      icon: 'mdi-account',
+      title: "Confirmar cuenta",
+      icon: "mdi-account",
       middleware: Public,
     },
   },
 
   // Not Found
   {
-    path: '/:pathMatch(.*)*',
-    name: 'not_found',
-    component: () => import('@/views/public/NotFound.vue'),
+    path: "/:pathMatch(.*)*",
+    name: "not_found",
+    component: () => import("@/views/public/NotFound.vue"),
   },
-]
+];
 
-export default routes
+export default routes;

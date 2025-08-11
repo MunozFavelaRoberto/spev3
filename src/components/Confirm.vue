@@ -4,7 +4,11 @@
       <v-card-text>
         <v-row dense class="text-center">
           <v-col cols="12">
-            <v-icon color="warning" size="48" icon="mdi-alert-octagon-outline" />
+            <v-icon
+              color="warning"
+              size="48"
+              icon="mdi-alert-octagon-outline"
+            />
           </v-col>
           <v-col cols="12">
             <h3 class="font-weight-light">
@@ -12,7 +16,13 @@
             </h3>
           </v-col>
           <v-col cols="12" class="pt-3">
-            <v-btn icon variant="flat" size="small" class="mr-2" @click="handleAction(false)">
+            <v-btn
+              icon
+              variant="flat"
+              size="small"
+              class="mr-2"
+              @click="handleAction(false)"
+            >
               <v-icon>mdi-close</v-icon>
               <v-tooltip activator="parent" location="top">Cancelar</v-tooltip>
             </v-btn>
@@ -36,25 +46,25 @@
 
 <script setup>
 // Estado reactivo
-import { ref } from 'vue'
+import { ref } from "vue";
 
-const visible = ref(false)
-const message = ref('')
-const resolve = ref(null)
+const visible = ref(false);
+const message = ref("");
+const resolve = ref(null);
 
 // Método expuesto
 const show = (msg) => {
-  message.value = msg
-  visible.value = true
+  message.value = msg;
+  visible.value = true;
   return new Promise((rsp) => {
-    resolve.value = rsp
-  })
-}
+    resolve.value = rsp;
+  });
+};
 
 const handleAction = (rsp) => {
-  resolve.value?.(rsp)
-  visible.value = false
-}
+  resolve.value?.(rsp);
+  visible.value = false;
+};
 
-defineExpose({ show })
+defineExpose({ show });
 </script>

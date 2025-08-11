@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const useStore = defineStore('auth', {
+export const useStore = defineStore("auth", {
   state: () => ({
     auth: null,
     conf: {
@@ -17,20 +17,20 @@ export const useStore = defineStore('auth', {
 
   actions: {
     loginAction(auth) {
-      this.auth = auth
+      this.auth = auth;
     },
     logoutAction() {
-      this.auth = null
+      this.auth = null;
     },
     themeDarkAction() {
-      this.conf.theme_dark = !this.conf.theme_dark
+      this.conf.theme_dark = !this.conf.theme_dark;
     },
     profileAction(user) {
       if (this.auth) {
-        this.auth.user = user
+        this.auth.user = user;
       }
     },
   },
 
   persist: true,
-})
+});

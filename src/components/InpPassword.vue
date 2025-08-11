@@ -20,7 +20,7 @@
 
 <script setup>
 // Estado interno
-import { ref } from 'vue'
+import { ref } from "vue";
 
 // Props
 const props = defineProps({
@@ -30,20 +30,20 @@ const props = defineProps({
   counter: Boolean,
   disabled: Boolean,
   prepend: String,
-})
+});
 
 // Eventos
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(["update:modelValue"]);
 
 // Estado
-const isVisible = ref(false)
+const isVisible = ref(false);
 
 // Métodos
 const toggleVisibility = () => {
-  isVisible.value = !isVisible.value
-}
+  isVisible.value = !isVisible.value;
+};
 
 const emitValue = (val) => {
-  emit('update:modelValue', val)
-}
+  emit("update:modelValue", val);
+};
 </script>
