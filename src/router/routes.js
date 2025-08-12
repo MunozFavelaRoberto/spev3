@@ -3,6 +3,50 @@ import Auth from "./middleware/Auth";
 import Public from "./middleware/Public";
 
 const routes = [
+  // companies
+  {
+    path: '/empresas',
+    name: 'company',
+    component: () => import('@/views/companies/List.vue'),
+    meta: {
+      title: 'Empresas',
+      icon: 'mdi-domain',
+      middleware: Auth,
+    },
+  },
+  {
+    path: '/empresas/agregar',
+    name: 'company/store',
+    component: () => import('@/views/companies/Form.vue'),
+    meta: {
+      title: 'Empresa | Agregar',
+      icon: 'mdi-domain',
+      middleware: Auth,
+    },
+  },
+  {
+    path: '/empresas/:id',
+    name: 'company/show',
+    component: () => import('@/views/companies/Show.vue'),
+    props: true,
+    meta: {
+      title: 'Empresa',
+      icon: 'mdi-domain',
+      middleware: Auth,
+    },
+  },
+  {
+    path: '/empresas/:id/editar',
+    name: 'company/update',
+    component: () => import('@/views/companies/Form.vue'),
+    props: true,
+    meta: {
+      title: 'Empresa | Editar',
+      icon: 'mdi-domain',
+      middleware: Auth,
+    },
+  },
+  
   // General
   {
     path: "/inicio",
