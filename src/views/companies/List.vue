@@ -6,16 +6,16 @@
           <CardTitle :text="route.meta.title" :icon="route.meta.icon" />
         </v-col>
         <v-col cols="2" class="text-right">
-            <v-btn
-              icon
-              variant="flat"
-              size="x-small"
-              color="success"
-              :to="{ name: `${routeName}/store` }"
-            >
-              <v-icon>mdi-plus</v-icon>
-              <v-tooltip activator="parent" location="bottom">Agregar</v-tooltip>
-            </v-btn>
+          <v-btn
+            icon
+            variant="flat"
+            size="x-small"
+            color="success"
+            :to="{ name: `${routeName}/store` }"
+          >
+            <v-icon>mdi-plus</v-icon>
+            <v-tooltip activator="parent" location="bottom">Agregar</v-tooltip>
+          </v-btn>
         </v-col>
       </v-row>
     </v-card-title>
@@ -24,7 +24,12 @@
       <v-row dense>
         <v-col cols="12" md="9" class="pb-0">
           <v-row dense>
-            <v-col v-if="store.getAuth?.user?.role_id === 1" cols="12" md="3" class="pb-0">
+            <v-col
+              v-if="store.getAuth?.user?.role_id === 1"
+              cols="12"
+              md="3"
+              class="pb-0"
+            >
               <v-select
                 v-model="active"
                 label="Mostrar"
@@ -71,7 +76,7 @@
             :loading="isItemsEmpty && isLoading"
             @click.prevent="isItemsEmpty ? getItems() : (items = [])"
           >
-            {{ isItemsEmpty ? 'Aplicar' : 'Cambiar' }} filtros
+            {{ isItemsEmpty ? "Aplicar" : "Cambiar" }} filtros
             <v-icon right>mdi-filter</v-icon>
           </v-btn>
         </v-col>
@@ -90,8 +95,13 @@
             </template>
 
             <template #item.email_verified_at="{ item }">
-              <v-icon size="x-small" :color="item.email_verified_at ? 'info' : ''">
-                mdi-checkbox-blank-circle{{ item.email_verified_at ? '' : '-outline' }}
+              <v-icon
+                size="x-small"
+                :color="item.email_verified_at ? 'info' : ''"
+              >
+                mdi-checkbox-blank-circle{{
+                  item.email_verified_at ? "" : "-outline"
+                }}
               </v-icon>
             </template>
 
@@ -102,10 +112,15 @@
                   variant="text"
                   size="x-small"
                   :color="item.active ? '' : 'red-darken-3'"
-                  :to="{ name: `${routeName}/show`, params: { id: getEncodeId(item.id) } }"
+                  :to="{
+                    name: `${routeName}/show`,
+                    params: { id: getEncodeId(item.id) },
+                  }"
                 >
                   <v-icon>mdi-eye</v-icon>
-                  <v-tooltip activator="parent" location="left">Detalle</v-tooltip>
+                  <v-tooltip activator="parent" location="left"
+                    >Detalle</v-tooltip
+                  >
                 </v-btn>
               </div>
             </template>
@@ -118,50 +133,50 @@
 
 <script setup>
 // Importaciones externas
-import { ref, computed, inject, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import axios from 'axios'
+import { ref, computed, inject, onMounted } from "vue";
+import { useRoute } from "vue-router";
+import axios from "axios";
 
 // Importaciones internas
-import { useStore } from '@/store'
-import { URL_API } from '@/utils/config'
-import { getHdrs, getErr, getRsp } from '@/utils/http'
-import { getEncodeId, getBlob } from '@/utils/coders'
-import { getDateTime } from '@/utils/formatters'
-import CardTitle from '@/components/CardTitle.vue'
+import { useStore } from "@/store";
+import { URL_API } from "@/utils/config";
+import { getHdrs, getErr, getRsp } from "@/utils/http";
+import { getEncodeId, getBlob } from "@/utils/coders";
+import { getDateTime } from "@/utils/formatters";
+import CardTitle from "@/components/CardTitle.vue";
 
 // Constantes
-const routeName = 'company'
-const alert = inject('alert')
-const store = useStore()
-const route = useRoute()
+const routeName = "company";
+const alert = inject("alert");
+const store = useStore();
+const route = useRoute();
 
 // Estado
-const isLoading = ref(false)
-const items = ref([])
-const search = ref('')
-const active = ref(1)
-const filter = ref(0)
+const isLoading = ref(false);
+const items = ref([]);
+const search = ref("");
+const active = ref(1);
+const filter = ref(0);
 
-const isItemsEmpty = computed(() => items.value.length === 0)
+const isItemsEmpty = computed(() => items.value.length === 0);
 
 // Opciones y headers
 const activeOptions = [
-  { id: 1, name: 'ACTIVOS' },
-  { id: 0, name: 'INACTIVOS' },
-]
-const filterOptions = [{ id: 0, name: 'TODOS' }]
+  { id: 1, name: "ACTIVOS" },
+  { id: 0, name: "INACTIVOS" },
+];
+const filterOptions = [{ id: 0, name: "TODOS" }];
 
 const headers = [
-  { title: '#', key: 'key', filterable: false, sortable: false, width: 60 },
-  { title: 'Nombre', key: 'name' },
-  { title: '', key: 'action', filterable: false, sortable: false, width: 60 },
-]
+  { title: "#", key: "key", filterable: false, sortable: false, width: 60 },
+  { title: "Nombre", key: "name" },
+  { title: "", key: "action", filterable: false, sortable: false, width: 60 },
+];
 
 // Cargar registros
 const getItems = async () => {
-  isLoading.value = true
-  items.value = []
+  isLoading.value = true;
+  items.value = [];
   try {
     //const endpoint = `${URL_API}/${routeName}?active=${active.value}&filter=${filter.value}`
     //const response = await axios.get(endpoint, getHdrs(store.getAuth?.token))
@@ -169,138 +184,138 @@ const getItems = async () => {
       data: {
         msg: "Registros retornados correctamente",
         data: {
-  items: [
-    {
-      id: 4,
-      active: 1,
-      name: "GOOGLE",
-      surname_p: "LLC",
-      surname_m: null,
-      email: "google@svr.mx",
-      employment_position: "VENTAS",
-      role_id: 2,
-      email_verified_at: null,
-      uiid: "C-0004", // Cambiado a 'C' para 'Compañía'
-      key: 0,
-      full_name: "GOOGLE LLC",
-      role: {
-        name: "USUARIO",
-      },
-    },
-    {
-      id: 5,
-      active: 1,
-      name: "APPLE",
-      surname_p: "INC",
-      surname_m: null,
-      email: "apple@svr.mx",
-      employment_position: "PROGRAMADOR",
-      role_id: 2,
-      email_verified_at: null,
-      uiid: "C-0005",
-      key: 1,
-      full_name: "APPLE INC",
-      role: {
-        name: "USUARIO",
-      },
-    },
-    {
-      id: 6,
-      active: 1,
-      name: "MICROSOFT",
-      surname_p: "CORP",
-      surname_m: null,
-      email: "microsoft@svr.mx",
-      employment_position: "PROGRAMADOR",
-      role_id: 2,
-      email_verified_at: null,
-      uiid: "C-0006",
-      key: 2,
-      full_name: "MICROSOFT CORP",
-      role: {
-        name: "USUARIO",
-      },
-    },
-    {
-      id: 8,
-      active: 1,
-      name: "AMAZON",
-      surname_p: "GROUP",
-      surname_m: null,
-      email: "amazon@svr.mx",
-      employment_position: "PROGRAMADOR",
-      role_id: 2,
-      email_verified_at: null,
-      uiid: "C-0008",
-      key: 3,
-      full_name: "AMAZON GROUP",
-      role: {
-        name: "USUARIO",
-      },
-    },
-    {
-      id: 1,
-      active: 1,
-      name: "META",
-      surname_p: "PLATFORMS",
-      surname_m: null,
-      email: "meta@svr.mx",
-      employment_position: "",
-      role_id: 1,
-      email_verified_at: null,
-      uiid: "C-0001",
-      key: 4,
-      full_name: "META PLATFORMS",
-      role: {
-        name: "ADMINISTRADOR",
-      },
-    },
-    {
-      id: 7,
-      active: 1,
-      name: "TESLA",
-      surname_p: "MOTORS",
-      surname_m: null,
-      email: "tesla@svr.mx",
-      employment_position: "DISEÑADORA",
-      role_id: 2,
-      email_verified_at: null,
-      uiid: "C-0007",
-      key: 5,
-      full_name: "TESLA MOTORS",
-      role: {
-        name: "USUARIO",
-      },
-    },
-    {
-      id: 2,
-      active: 1,
-      name: "NETFLIX",
-      surname_p: "SERVICES",
-      surname_m: null,
-      email: "netflix@svr.mx",
-      employment_position: "ADMINISTRADORA",
-      role_id: 2,
-      email_verified_at: null,
-      uiid: "C-0002",
-      key: 6,
-      full_name: "NETFLIX SERVICES",
-      role: {
-        name: "USUARIO",
-      },
-    },
-  ],
-},
+          items: [
+            {
+              id: 4,
+              active: 1,
+              name: "GOOGLE",
+              surname_p: "LLC",
+              surname_m: null,
+              email: "google@svr.mx",
+              employment_position: "VENTAS",
+              role_id: 2,
+              email_verified_at: null,
+              uiid: "C-0004", // Cambiado a 'C' para 'Compañía'
+              key: 0,
+              full_name: "GOOGLE LLC",
+              role: {
+                name: "USUARIO",
+              },
+            },
+            {
+              id: 5,
+              active: 1,
+              name: "APPLE",
+              surname_p: "INC",
+              surname_m: null,
+              email: "apple@svr.mx",
+              employment_position: "PROGRAMADOR",
+              role_id: 2,
+              email_verified_at: null,
+              uiid: "C-0005",
+              key: 1,
+              full_name: "APPLE INC",
+              role: {
+                name: "USUARIO",
+              },
+            },
+            {
+              id: 6,
+              active: 1,
+              name: "MICROSOFT",
+              surname_p: "CORP",
+              surname_m: null,
+              email: "microsoft@svr.mx",
+              employment_position: "PROGRAMADOR",
+              role_id: 2,
+              email_verified_at: null,
+              uiid: "C-0006",
+              key: 2,
+              full_name: "MICROSOFT CORP",
+              role: {
+                name: "USUARIO",
+              },
+            },
+            {
+              id: 8,
+              active: 1,
+              name: "AMAZON",
+              surname_p: "GROUP",
+              surname_m: null,
+              email: "amazon@svr.mx",
+              employment_position: "PROGRAMADOR",
+              role_id: 2,
+              email_verified_at: null,
+              uiid: "C-0008",
+              key: 3,
+              full_name: "AMAZON GROUP",
+              role: {
+                name: "USUARIO",
+              },
+            },
+            {
+              id: 1,
+              active: 1,
+              name: "META",
+              surname_p: "PLATFORMS",
+              surname_m: null,
+              email: "meta@svr.mx",
+              employment_position: "",
+              role_id: 1,
+              email_verified_at: null,
+              uiid: "C-0001",
+              key: 4,
+              full_name: "META PLATFORMS",
+              role: {
+                name: "ADMINISTRADOR",
+              },
+            },
+            {
+              id: 7,
+              active: 1,
+              name: "TESLA",
+              surname_p: "MOTORS",
+              surname_m: null,
+              email: "tesla@svr.mx",
+              employment_position: "DISEÑADORA",
+              role_id: 2,
+              email_verified_at: null,
+              uiid: "C-0007",
+              key: 5,
+              full_name: "TESLA MOTORS",
+              role: {
+                name: "USUARIO",
+              },
+            },
+            {
+              id: 2,
+              active: 1,
+              name: "NETFLIX",
+              surname_p: "SERVICES",
+              surname_m: null,
+              email: "netflix@svr.mx",
+              employment_position: "ADMINISTRADORA",
+              role_id: 2,
+              email_verified_at: null,
+              uiid: "C-0002",
+              key: 6,
+              full_name: "NETFLIX SERVICES",
+              role: {
+                name: "USUARIO",
+              },
+            },
+          ],
+        },
       },
     };
-    items.value = getRsp(response).data.items
+    items.value = getRsp(response).data.items;
   } catch (err) {
-    alert?.show('red-darken-1', getErr(err))
+    alert?.show("red-darken-1", getErr(err));
   } finally {
-    isLoading.value = false
+    isLoading.value = false;
   }
-}
+};
 
 // Cargar datos al montar
-onMounted(getItems)
+onMounted(getItems);
 </script>
