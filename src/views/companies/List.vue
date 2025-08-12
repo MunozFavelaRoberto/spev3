@@ -6,11 +6,6 @@
           <CardTitle :text="route.meta.title" :icon="route.meta.icon" />
         </v-col>
         <v-col cols="2" class="text-right">
-          <div class="d-flex justify-end" style="gap: 10px">
-            <v-btn icon variant="flat" size="x-small" color="warning" @click="downloadUsers">
-              <v-icon>mdi-list-box</v-icon>
-              <v-tooltip activator="parent" location="bottom">Listado de empleados</v-tooltip>
-            </v-btn>
             <v-btn
               icon
               variant="flat"
@@ -21,7 +16,6 @@
               <v-icon>mdi-plus</v-icon>
               <v-tooltip activator="parent" location="bottom">Agregar</v-tooltip>
             </v-btn>
-          </div>
         </v-col>
       </v-row>
     </v-card-title>
@@ -306,33 +300,6 @@ const getItems = async () => {
     items.value = getRsp(response).data.items
   } catch (err) {
     alert?.show('red-darken-1', getErr(err))
-  } finally {
-    isLoading.value = false
-  }
-}
-
-const downloadUsers = async () => {
-  isLoading.value = true
-  try {
-    const endpoint = `${URL_API}/${routeName}/file/json`
-    const response = await axios.get(endpoint, getHdrs(store.getAuth?.token))
-    const data = getRsp(response).data
-
-    if (typeof data === 'string') {
-      const blob = getBlob(data, 'svr')
-
-      const link = document.createElement('a')
-      link.href = URL.createObjectURL(blob)
-      link.download = `usuarios_${getDateTime('', '_', '')}.svr`
-      link.click()
-      link.remove()
-
-      alert?.show('success', 'Archivo descargado correctamente')
-    } else {
-      throw new Error('Formato de datos no válido')
-    }
-  } catch (err) {
-    alert?.show('red-darken-1', getErr(err) || 'Error al descargar el archivo')
   } finally {
     isLoading.value = false
   }
