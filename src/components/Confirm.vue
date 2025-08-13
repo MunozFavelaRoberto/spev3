@@ -20,6 +20,7 @@
               icon
               variant="flat"
               size="small"
+              color="grey"
               class="mr-2"
               @click="handleAction(false)"
             >

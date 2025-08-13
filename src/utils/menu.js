@@ -4,6 +4,6 @@
  */
 export const menuItems = [
   { title: "Inicio", icon: "mdi-home", link: "home" },
-  { title: 'Empresas', icon: 'mdi-domain', link: 'company' },
+  { title: "Empresas", icon: "mdi-domain", link: "company" },
   // { title: 'Usuarios', icon: 'mdi-account', link: 'users' },
 ];

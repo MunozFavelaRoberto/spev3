@@ -16,9 +16,9 @@
               :to="{ name: `` }"
             >
               <v-icon>mdi mdi-store</v-icon>
-              <v-tooltip activator="parent" location="bottom"
-                >Sucursales</v-tooltip
-              >
+              <v-tooltip activator="parent" location="bottom">
+                Sucursales
+              </v-tooltip>
             </v-btn>
             <v-btn
               v-if="item.active"
@@ -57,9 +57,9 @@
                   @click.prevent="restoreItem"
                 >
                   <v-icon>mdi-delete-restore</v-icon>
-                  <v-tooltip activator="parent" location="left"
-                    >Reactivar</v-tooltip
-                  >
+                  <v-tooltip activator="parent" location="left">
+                    Reactivar
+                  </v-tooltip>
                 </v-btn>
               </v-col>
             </v-row>
@@ -82,9 +82,9 @@
                     @click.prevent="regDialog = true"
                   >
                     <v-icon>mdi-clock-outline</v-icon>
-                    <v-tooltip activator="parent" location="left"
-                      >Registro</v-tooltip
-                    >
+                    <v-tooltip activator="parent" location="left">
+                      Registro
+                    </v-tooltip>
                   </v-btn>
                 </v-col>
               </v-row>
@@ -92,10 +92,10 @@
 
             <v-card-text>
               <v-row dense>
-                <v-col cols="12" md="3">
+                <v-col cols="12" md="6">
                   <VisVal label="Nombre" :value="item.name" />
                 </v-col>
-                <v-col cols="12" md="3">
+                <v-col cols="12" md="6">
                   <VisDoc label="Logo" :value="item.logo_b64" img />
                 </v-col>
               </v-row>
@@ -182,11 +182,10 @@ const getItem = async () => {
             updated_at: "2025-07-31 17:30:23",
             created_by_id: 1,
             updated_by_id: 1,
-            name: "GOOGLE",
+            name: "EMPRESA TEST",
+            description: "EMPRESA TEST DESCRIPCIÓN",
             logo: "cDdfLTsehXzcHn7jbydu3mBPUY36Q7nekBpMTZ3BCdB.png",
             uiid: "E-0001",
-            description:
-              "Descripción de la empresa de prueba para el sistema SPE",
             created_by: {
               email: "samuel@svr.mx",
             },
@@ -218,11 +217,11 @@ const deleteItem = async () => {
 
   isLoading.value = true;
   try {
-    const endpoint = `${URL_API}/${routeName}/${itemId.value}`;
-    const response = getRsp(
-      await axios.delete(endpoint, getHdrs(store.getAuth?.token))
-    );
-    alert?.show("red-darken-1", response.msg);
+    // const endpoint = `${URL_API}/${routeName}/${itemId.value}`;
+    // const response = getRsp(
+    //   await axios.delete(endpoint, getHdrs(store.getAuth?.token))
+    // );
+    // alert?.show("red-darken-1", response.msg);
     router.push({ name: routeName });
   } catch (err) {
     alert?.show("red-darken-1", getErr(err));
@@ -238,16 +237,16 @@ const restoreItem = async () => {
 
   isLoading.value = true;
   try {
-    const endpoint = `${URL_API}/system/${routeName}/restore`;
-    const response = getRsp(
-      await axios.post(
-        endpoint,
-        { id: itemId.value },
-        getHdrs(store.getAuth?.token)
-      )
-    );
-    item.value = response.data.item;
-    alert?.show("success", response.msg);
+    // const endpoint = `${URL_API}/system/${routeName}/restore`;
+    // const response = getRsp(
+    //   await axios.post(
+    //     endpoint,
+    //     { id: itemId.value },
+    //     getHdrs(store.getAuth?.token)
+    //   )
+    // );
+    // item.value = response.data.item;
+    // alert?.show("success", response.msg);
   } catch (err) {
     alert?.show("red-darken-1", getErr(err));
   } finally {

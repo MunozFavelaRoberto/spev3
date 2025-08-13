@@ -141,8 +141,7 @@ import axios from "axios";
 import { useStore } from "@/store";
 import { URL_API } from "@/utils/config";
 import { getHdrs, getErr, getRsp } from "@/utils/http";
-import { getEncodeId, getBlob } from "@/utils/coders";
-import { getDateTime } from "@/utils/formatters";
+import { getEncodeId } from "@/utils/coders";
 import CardTitle from "@/components/CardTitle.vue";
 
 // Constantes
@@ -170,6 +169,7 @@ const filterOptions = [{ id: 0, name: "TODOS" }];
 const headers = [
   { title: "#", key: "key", filterable: false, sortable: false, width: 60 },
   { title: "Nombre", key: "name" },
+  { title: "UIID", key: "uiid" },
   { title: "", key: "action", filterable: false, sortable: false, width: 60 },
 ];
 
@@ -177,6 +177,7 @@ const headers = [
 const getItems = async () => {
   isLoading.value = true;
   items.value = [];
+
   try {
     //const endpoint = `${URL_API}/${routeName}?active=${active.value}&filter=${filter.value}`
     //const response = await axios.get(endpoint, getHdrs(store.getAuth?.token))
@@ -186,123 +187,11 @@ const getItems = async () => {
         data: {
           items: [
             {
-              id: 4,
-              active: 1,
-              name: "GOOGLE",
-              surname_p: "LLC",
-              surname_m: null,
-              email: "google@svr.mx",
-              employment_position: "VENTAS",
-              role_id: 2,
-              email_verified_at: null,
-              uiid: "C-0004", // Cambiado a 'C' para 'Compañía'
-              key: 0,
-              full_name: "GOOGLE LLC",
-              role: {
-                name: "USUARIO",
-              },
-            },
-            {
-              id: 5,
-              active: 1,
-              name: "APPLE",
-              surname_p: "INC",
-              surname_m: null,
-              email: "apple@svr.mx",
-              employment_position: "PROGRAMADOR",
-              role_id: 2,
-              email_verified_at: null,
-              uiid: "C-0005",
-              key: 1,
-              full_name: "APPLE INC",
-              role: {
-                name: "USUARIO",
-              },
-            },
-            {
-              id: 6,
-              active: 1,
-              name: "MICROSOFT",
-              surname_p: "CORP",
-              surname_m: null,
-              email: "microsoft@svr.mx",
-              employment_position: "PROGRAMADOR",
-              role_id: 2,
-              email_verified_at: null,
-              uiid: "C-0006",
-              key: 2,
-              full_name: "MICROSOFT CORP",
-              role: {
-                name: "USUARIO",
-              },
-            },
-            {
-              id: 8,
-              active: 1,
-              name: "AMAZON",
-              surname_p: "GROUP",
-              surname_m: null,
-              email: "amazon@svr.mx",
-              employment_position: "PROGRAMADOR",
-              role_id: 2,
-              email_verified_at: null,
-              uiid: "C-0008",
-              key: 3,
-              full_name: "AMAZON GROUP",
-              role: {
-                name: "USUARIO",
-              },
-            },
-            {
               id: 1,
               active: 1,
-              name: "META",
-              surname_p: "PLATFORMS",
-              surname_m: null,
-              email: "meta@svr.mx",
-              employment_position: "",
-              role_id: 1,
-              email_verified_at: null,
-              uiid: "C-0001",
-              key: 4,
-              full_name: "META PLATFORMS",
-              role: {
-                name: "ADMINISTRADOR",
-              },
-            },
-            {
-              id: 7,
-              active: 1,
-              name: "TESLA",
-              surname_p: "MOTORS",
-              surname_m: null,
-              email: "tesla@svr.mx",
-              employment_position: "DISEÑADORA",
-              role_id: 2,
-              email_verified_at: null,
-              uiid: "C-0007",
-              key: 5,
-              full_name: "TESLA MOTORS",
-              role: {
-                name: "USUARIO",
-              },
-            },
-            {
-              id: 2,
-              active: 1,
-              name: "NETFLIX",
-              surname_p: "SERVICES",
-              surname_m: null,
-              email: "netflix@svr.mx",
-              employment_position: "ADMINISTRADORA",
-              role_id: 2,
-              email_verified_at: null,
-              uiid: "C-0002",
-              key: 6,
-              full_name: "NETFLIX SERVICES",
-              role: {
-                name: "USUARIO",
-              },
+              name: "TEST",
+              uiid: "E-0001",
+              key: 0,
             },
           ],
         },
@@ -317,5 +206,7 @@ const getItems = async () => {
 };
 
 // Cargar datos al montar
-onMounted(getItems);
+onMounted(() => {
+  getItems();
+});
 </script>
