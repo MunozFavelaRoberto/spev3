@@ -145,7 +145,7 @@ import { getEncodeId } from "@/utils/coders";
 import CardTitle from "@/components/CardTitle.vue";
 
 // Constantes
-const routeName = "company";
+const routeName = "companies";
 const alert = inject("alert");
 const store = useStore();
 const route = useRoute();

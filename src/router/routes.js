@@ -6,7 +6,7 @@ const routes = [
   // companies
   {
     path: "/empresas",
-    name: "company",
+    name: "companies",
     component: () => import("@/views/companies/List.vue"),
     meta: {
       title: "Empresas",
@@ -16,7 +16,7 @@ const routes = [
   },
   {
     path: "/empresas/agregar",
-    name: "company/store",
+    name: "companies/store",
     component: () => import("@/views/companies/Form.vue"),
     meta: {
       title: "Empresa | Agregar",
@@ -26,7 +26,7 @@ const routes = [
   },
   {
     path: "/empresas/:id",
-    name: "company/show",
+    name: "companies/show",
     component: () => import("@/views/companies/Show.vue"),
     props: true,
     meta: {
@@ -37,7 +37,7 @@ const routes = [
   },
   {
     path: "/empresas/:id/editar",
-    name: "company/update",
+    name: "companies/update",
     component: () => import("@/views/companies/Form.vue"),
     props: true,
     meta: {

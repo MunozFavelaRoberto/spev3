@@ -158,7 +158,7 @@ import CardTitle from "@/components/CardTitle.vue";
 import BtnDwd from "@/components/BtnDwd.vue";
 
 // Constantes fijas
-const routeName = "company";
+const routeName = "companies";
 
 // Estado y referencias
 const alert = inject("alert");
