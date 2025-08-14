@@ -21,14 +21,14 @@
             <VisVal
               label="Creación"
               :value="item.created_by?.email"
-              :sub="item.created_at"
+              :subvalue="item.created_at"
             />
           </v-col>
           <v-col cols="6">
             <VisVal
               label="Últ. edición"
               :value="item.updated_by?.email"
-              :sub="item.updated_at"
+              :subvalue="item.updated_at"
             />
           </v-col>
           <v-col v-if="item.email_verified_at" cols="6">
