@@ -173,8 +173,6 @@ const isLoading = ref(true);
 const formRef = ref(null);
 const item = ref(null);
 const rules = getRules();
-const roles = ref([]);
-const rolesLoading = ref(true);
 
 // Obtener datos
 const getItem = async () => {
