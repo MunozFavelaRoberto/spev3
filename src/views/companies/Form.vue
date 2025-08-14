@@ -150,7 +150,6 @@ import { getHdrs, getErr, getRsp } from "@/utils/http";
 import { getDecodeId, getEncodeId } from "@/utils/coders";
 import { getRules } from "@/utils/validators";
 import { getObj, getFormData } from "@/utils/helpers";
-import { getUserObj } from "@/utils/objects";
 
 // Componentes
 import BtnBack from "@/components/BtnBack.vue";
